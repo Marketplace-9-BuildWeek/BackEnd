@@ -18,7 +18,7 @@ server.use(express.json())
 server.use(helmet())
 server.use(cors())
 
-server.get('/api/users', async (req, res) => {
+server.get('/api/users',  (req, res) => {
   console.log('getting users')
   // res.json(await getAllUsers())
 })
