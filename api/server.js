@@ -19,7 +19,8 @@ server.use(helmet())
 server.use(cors())
 
 server.get('/api/users', async (req, res) => {
-  res.json(await getAllUsers())
+  console.log('getting users')
+  // res.json(await getAllUsers())
 })
 
 server.post('/api/users', async (req, res) => {
