@@ -1,22 +1,7 @@
 // checkIfUsernameAvailable, validation, checkIfUsernameExists, errorhandling, restricted
 
 const db = require('../data/db-config')
-const jwt = require('jsonwebtoken')
-const {JWT_SECRET} = require('./auth-secrets')
 
-const restricted = (req, res, next) => {
-    const token = req.headers.authorization
-    if(!token) {
-        next({status: 401, message: 'token required'})
-    } 
-    jwt.verify(token, JWT_SECRET, (err, decoded) => {
-        if (err) {
-            return next ({status: 401, message: 'token invalid'})
-        } 
-        req.decodedJwt = decoded
-        next()
-    })
-}
 const checkIfUsernameAvailable = async (req, res, next) => {
     console.log('about to check')
     const username = await db('users').where('username', req.body.username).first()
@@ -49,7 +34,6 @@ const errorHandling = (err, req, res, next) => {//eslint-disable-line
     })
 }
 module.exports = {
-    restricted,
     checkIfUsernameAvailable, 
     checkIfUsernameExists, 
     validation,

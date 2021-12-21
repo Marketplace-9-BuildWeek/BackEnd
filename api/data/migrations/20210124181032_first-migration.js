@@ -21,6 +21,7 @@ exports.up = async (knex) => {
         .notNullable()
         .references('location_id')
         .inTable('locations')
+        
     })
 }
 
