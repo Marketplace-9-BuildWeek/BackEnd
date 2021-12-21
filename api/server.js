@@ -11,10 +11,7 @@ server.use(express.json())
 server.use(helmet())
 server.use(cors())
 
-server.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    next();
-});
+
 
 server.use('/auth', authRouter)
 server.use('/listings', listingRouter)
