@@ -5,7 +5,7 @@ const Users = require('./auth-model')
 const {checkIfUsernameExists, checkIfUsernameAvailable, validation, errorHandling} = require('./auth-middleware')
 const {BCRYPT_ROUNDS} = require('./auth-secrets')
 
-router.post('/login', validation, checkIfUsernameAvailable, (req, res, next) => {
+router.post('/register', validation, checkIfUsernameAvailable, (req, res, next) => {
     let user = req.body
     const hash = bcrypt.hashSync(user.password, BCRYPT_ROUNDS)
 
@@ -14,11 +14,12 @@ router.post('/login', validation, checkIfUsernameAvailable, (req, res, next) => 
     Users.create(user) 
         .then(savedUser => {
             console.log(savedUser)
+            res.json({message: 'hello'})
         })
         .catch(next)      
 })
 
-router.post('/register', validation, checkIfUsernameExists, (req, res, next) => {
+router.post('/login', validation, checkIfUsernameExists, (req, res, next) => {
     let {username, password} = req.body
 
     Users.findBy({username})
