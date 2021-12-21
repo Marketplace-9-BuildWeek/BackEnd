@@ -18,6 +18,7 @@ const restricted = (req, res, next) => {
     })
 }
 const checkIfUsernameAvailable = async (req, res, next) => {
+    console.log('about to check')
     const username = await db('users').where('username', req.body.username).first()
     console.log('we made it to check username')
     if (username) {
@@ -34,7 +35,8 @@ const checkIfUsernameExists = async (req, res, next) => {
         next({status: 401, message: 'invalid credentials'})
     }
 }
-const validation = (req, res, next) => {
+const validation = async (req, res, next) => {
+    console.log('validating')
     if (!req.body.username || !req.body.password) {
         next({status: 422, message: 'username and password required'})
     } else {
