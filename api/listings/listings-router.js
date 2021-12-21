@@ -13,7 +13,7 @@ router.get('/', restricted, async (req, res, next) => {
         })
 })
 
-router.post('/create', validateListing, (req, res, next) => {
+router.post('/create', restricted, validateListing, (req, res, next) => {
     Listings.create(req.body)
         .then(listing => {
             console.log(listing)
