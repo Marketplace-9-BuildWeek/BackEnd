@@ -2,7 +2,7 @@ const router = require('express').Router()
 const Listings = require('./listings-model')
 const {errorHandling, validateListing, restricted} = require('./listings-middleware')
 
-router.get('/', async (req, res, next) => {
+router.get('/', restricted, async (req, res, next) => {
     Listings.getAll()
         .then(listings => {
             console.log(listings)
