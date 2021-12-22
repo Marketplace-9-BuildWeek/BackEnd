@@ -13,6 +13,7 @@ server.use(cors())
 
 
 
+
 server.use('/auth', authRouter)
 server.use('/listings', listingRouter)
 
