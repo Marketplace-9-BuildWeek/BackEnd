@@ -20,7 +20,7 @@ const pg = require('pg')
 // const {Pool} = require('pg')
 
 if (process.env.DATABASE_URL) {
-  pg.defaults.ssl = false
+  pg.defaults.ssl = {rejectUnauthorized = false}
 }
 
 // const pool = (() => {//eslint-disable-line
